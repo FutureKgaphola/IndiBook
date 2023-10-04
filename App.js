@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Image, StyleSheet, View,Dimensions } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Home from "./screens/Home";
@@ -11,7 +11,7 @@ import {
   MaterialIcons,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { Appbar } from "react-native-paper";
+import { Appbar, TextInput } from "react-native-paper";
 import * as Font from "expo-font";
 import {
   SafeAreaProvider,
@@ -20,6 +20,7 @@ import history from './assets/history.png';
 import { useEffect, useState } from "react";
 
 const Tab = createMaterialBottomTabNavigator();
+const width=Dimensions.get('window').width;
 
 export default function App() {
   const [fontsLoaded, setfont] = useState(null);
@@ -46,8 +47,32 @@ export default function App() {
           <Appbar.BackAction onPress={() => {}} />
           <Appbar.Content title="Indigi Book" />
           <Appbar.Action icon={history} onPress={() => {}} />
-          <Appbar.Action icon="magnify" onPress={() => {}} />
         </Appbar.Header>
+        <View style={{flexDirection:'row',width:width,marginBottom:5}}>
+        <Image
+            source={require("./assets/vendaman.jpg")}
+            style={{
+              width: 40,
+              height: 40,
+              objectFit: "scale-down",
+              borderColor: "white",
+              borderWidth: 1,
+              zIndex: 5,
+              borderRadius: 150,
+              shadowColor: "white",
+              top: 0,
+              alignSelf:'center'
+            }}
+          />
+        <TextInput
+        style={{borderRadius:15,width:width-48}}
+      mode="outlined"
+      label="search for something"
+      activeOutlineColor="green"
+      
+      right={<TextInput.Icon icon="magnify" />}
+    />
+        </View>
 
         <Tab.Navigator
         initialRouteName="Home"
