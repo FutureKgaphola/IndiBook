@@ -7,7 +7,8 @@ import { ScrollView } from "react-native";
 const Home = () => {
   return (
     <View style={{flex:1}}>
-        <ScrollView>
+        <ScrollView
+        nestedScrollEnabled={true}>
         <View>
         <FlatList
         data={data}
